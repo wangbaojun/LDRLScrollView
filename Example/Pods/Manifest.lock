@@ -1,0 +1,23 @@
+PODS:
+  - LDCPRLCTableView (0.1.0):
+    - Masonry
+    - ReactiveCocoa
+  - Masonry (1.0.1)
+  - ReactiveCocoa (4.2.1):
+    - Result (~> 2.0)
+  - Result (2.1.2)
+
+DEPENDENCIES:
+  - LDCPRLCTableView (from `../`)
+
+EXTERNAL SOURCES:
+  LDCPRLCTableView:
+    :path: ../
+
+SPEC CHECKSUMS:
+  LDCPRLCTableView: 66497f2212feedd700f0a8a2b0e2c0289a25d2ed
+  Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
+  ReactiveCocoa: 5a42745f11ea236f405bb9ce5e97c5e3b23562dd
+  Result: 6e722d4a66b1408680dbfcdf51c0b1c4b706316a
+
+COCOAPODS: 0.39.0

@@ -1,0 +1,6 @@
+use_frameworks!
+
+target 'LDCPRLCTableView_Example' do
+  pod 'LDCPRLCTableView', :path => '../'
+
+end

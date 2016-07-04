@@ -1,0 +1,6 @@
+framework module LDCPRLCTableView {
+  umbrella header "LDCPRLCTableView-umbrella.h"
+
+  export *
+  module * { export * }
+}
