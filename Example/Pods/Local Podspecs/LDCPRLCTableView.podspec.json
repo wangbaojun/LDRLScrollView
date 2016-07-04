@@ -19,6 +19,8 @@
     "ios": "8.0"
   },
   "source_files": "LDCPRLCTableView/Classes/**/*",
+  "resources": "LDCPRLCTableView/Assets/LDCPRLCTableView.xcassets",
+  "public_header_files": "Pod/Classes/**/*.h",
   "dependencies": {
     "Masonry": [
 

@@ -31,12 +31,13 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'LDCPRLCTableView/Classes/**/*'
-  
+  s.resources = 'LDCPRLCTableView/Assets/LDCPRLCTableView.xcassets'
+
   # s.resource_bundles = {
   #   'LDCPRLCTableView' => ['LDCPRLCTableView/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+   s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
 s.dependency 'Masonry'
 s.dependency 'ReactiveCocoa'
