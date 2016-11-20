@@ -1,8 +1,8 @@
 //
-//  LDCPRLCTableViewTests.m
-//  LDCPRLCTableViewTests
+//  LDRLSrcollViewTests.m
+//  LDRLSrcollViewTests
 //
-//  Created by bjwangbaojun on 07/04/2016.
+//  Created by bjwangbaojun on 11/20/2016.
 //  Copyright (c) 2016 bjwangbaojun. All rights reserved.
 //
 

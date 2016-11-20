@@ -1,0 +1,24 @@
+{
+  "name": "LDRLSrcollView",
+  "version": "0.1.0",
+  "summary": "A short description of LDRLSrcollView.",
+  "description": "ITxiansheng",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/LDRLSrcollView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "bjwangbaojun": "itxiansheng@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/LDRLSrcollView.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "LDRLSrcollView/Classes/**/*",
+  "public_header_files": "Pod/Classes/**/*.h",
+  "resources": "LDRLSrcollView/Assets/LDCPPullToReload.xcassets"
+}
