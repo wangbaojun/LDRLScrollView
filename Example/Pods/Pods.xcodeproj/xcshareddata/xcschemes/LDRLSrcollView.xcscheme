@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '1E4A33DB98D1D723A6350F12'
+               BlueprintIdentifier = '77219AE67389AAC421AC2335'
                BlueprintName = 'LDRLSrcollView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libLDRLSrcollView.a'>

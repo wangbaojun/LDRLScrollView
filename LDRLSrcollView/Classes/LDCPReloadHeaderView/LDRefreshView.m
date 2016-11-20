@@ -7,19 +7,14 @@
 //
 
 #import "LDRefreshView.h"
+#import "UIPullToReloadPiggyBankAnimationView.h"
 
 @interface LDRefreshView ()
 
-@property (nonatomic, copy) NSArray *loadingCats;
-@property (nonatomic, copy) NSArray *rollOverCats;
-@property (nonatomic, assign) BOOL isRollOverAnimating;
-@property (nonatomic, assign) BOOL isLoadingAnimating;
+@property (nonatomic, strong) UIView * containerView;
 
 @end
-
 @implementation LDRefreshView
-
-#pragma mark - life style
 
 - (instancetype) init {
     
@@ -31,142 +26,78 @@
     self = [super initWithFrame:frame];
     if(self){
         [self initSubviews];
-        [self initConstraints];
+        [self layoutViews];
     }
     return self;
 }
 
-#pragma mark Private Method
-
 - (void)initSubviews {
     
     self.backgroundColor = [UIColor clearColor];
-    [self addSubview:self.catImgView];
+    [self.containerView addSubview:self.statusLabel];
+    [self.containerView addSubview:self.animationView];
+    [self.backgroundImageView addSubview:self.containerView];
+    [self addSubview:self.backgroundImageView];
 }
 
-- (void)initConstraints {
+- (void)layoutViews {
     
-    NSDictionary *viewDic = NSDictionaryOfVariableBindings(_catImgView);
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.catImgView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint
-                                            constraintWithItem:self.catImgView
-                                            attribute:NSLayoutAttributeTop
-                                            relatedBy:NSLayoutRelationEqual
-                                            toItem:self
-                                            attribute:NSLayoutAttributeTop
-                                            multiplier:1.0
-                                            constant:8];
-    bottomConstraint.priority = 998;
-    
-    NSLayoutConstraint *topConstraint = [NSLayoutConstraint
-                                         constraintWithItem:self.catImgView
-                                         attribute:NSLayoutAttributeBottom
-                                         relatedBy:NSLayoutRelationEqual
-                                         toItem:self
-                                         attribute:NSLayoutAttributeBottom
-                                         multiplier:1.0
-                                         constant:-8];
-    topConstraint.priority = 998;
-    
-    [self addConstraints:@[bottomConstraint,topConstraint]];
+    NSDictionary *viewDic = NSDictionaryOfVariableBindings(_backgroundImageView,_containerView,_statusLabel,_animationView);
+    [self.backgroundImageView addConstraint:[NSLayoutConstraint constraintWithItem:self.containerView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.backgroundImageView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+    [self.backgroundImageView addConstraint:[NSLayoutConstraint constraintWithItem:self.containerView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.backgroundImageView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
 
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_backgroundImageView]|" options:0 metrics:nil views:viewDic]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_backgroundImageView]|" options:0 metrics:nil views:viewDic]];
     
-}
-#pragma mark - public
-
-- (void)startRollOverAnimation {
+    [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-1-[_animationView(35)]-10-[_statusLabel]|" options:0 metrics:nil views:viewDic]];
+    [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_animationView(50)]|" options:0 metrics:nil views:viewDic]];
     
-    if (self.isRollOverAnimating) {
-        return;
-    }
-    self.isRollOverAnimating = YES;
-    self.catImgView.image = [UIImage imageNamed:@"ldcat_4"];;
-    self.catImgView.animationDuration = 0.3f;
-    self.catImgView.animationRepeatCount = 1;
-    self.catImgView.contentMode =UIViewContentModeCenter;
-    self.catImgView.animationImages = self.rollOverCats;
-    [self.catImgView startAnimating];
+    [self.containerView addConstraint:[NSLayoutConstraint constraintWithItem:self.statusLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.containerView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:10.0]];
     
-}
-- (void)stopRollOverAnimation {
-    
-    self.isRollOverAnimating = NO;
-    [self.catImgView stopAnimating];
-    self.catImgView.animationImages = nil;
-}
-
-
-- (void)startLoadingAnimation {
-    
-    if (self.isLoadingAnimating) {
-        return;
-    }
-    if (self.isRollOverAnimating) {
-        [self stopRollOverAnimation];
-    }
-    self.isLoadingAnimating = YES;
-    self.catImgView.animationDuration = 0.6f;
-    self.catImgView.animationRepeatCount = 0;
-    self.catImgView.contentMode =UIViewContentModeCenter;
-    self.catImgView.animationImages = self.loadingCats;
-    [self.catImgView startAnimating];
-}
-
-- (void)stopLoadingAnimation {
-    
-    if (self.isLoadingAnimating) {
-        self.isLoadingAnimating = NO;
-        [self.catImgView stopAnimating];
-        self.catImgView.animationImages = nil;
-        self.catImgView.contentMode = UIViewContentModeScaleToFill;
-        self.catImgView.image = [UIImage imageNamed:@"ldcircle"];
-    }
 }
 
 #pragma mark -getter
 
-- (UIImageView *)catImgView {
+- (UIImageView *)backgroundImageView {
     
-    if (!_catImgView) {
-        _catImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ldcircle"]];
-        _catImgView.contentMode = UIViewContentModeScaleToFill;
-        _catImgView.userInteractionEnabled = YES;
-        _catImgView.translatesAutoresizingMaskIntoConstraints = NO;
-        _catImgView.animationImages = self.rollOverCats;
+    if (!_backgroundImageView) {
+        _backgroundImageView = [UIImageView new];
+        _backgroundImageView.userInteractionEnabled = YES;
+        _backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
     }
-    return _catImgView;
+    return _backgroundImageView;
 }
 
-
-- (NSArray *)loadingCats {
+- (UILabel *)statusLabel {
     
-    if (!_loadingCats) {
-        NSMutableArray *ma = [NSMutableArray array];
-        for (int i = 4; i < 12; i++) {
-            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"ldcat_%d", i]];
-            [ma addObject:image];
-            _loadingCats = [NSArray arrayWithArray:ma];
-        }
+    if (!_statusLabel) {
+        _statusLabel = [UILabel new];
+        _statusLabel.font = [UIFont boldSystemFontOfSize:13.0f];
+        _statusLabel.textColor = [UIColor colorWithRed:0x4e/255.0f green:0x42/255.0f blue:0x34/255.0f alpha:1.0f];
+        _statusLabel.backgroundColor = self.backgroundColor;
+        _statusLabel.textAlignment = NSTextAlignmentCenter;
+        _statusLabel.translatesAutoresizingMaskIntoConstraints = NO;
     }
-    return _loadingCats;
+    return _statusLabel;
 }
 
-- (NSArray *)rollOverCats {
+- (UIView *)animationView {
     
-    if (!_rollOverCats) {
-        NSMutableArray *ma = [NSMutableArray array];
-        for (int i = 1; i < 5; i++) {
-            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"ldcat_%d", i]];
-            [ma addObject:image];
-            _rollOverCats = [NSArray arrayWithArray:ma];
-        }
+    if (!_animationView) {
+        _animationView = [[UIPullToReloadPiggyBankAnimationView alloc] init];
+        _animationView.translatesAutoresizingMaskIntoConstraints = NO;
     }
-    return _rollOverCats;
-
+    return _animationView;
 }
 
-
+- (UIView *)containerView {
+    
+    if (!_containerView) {
+        _containerView = [UIView new];
+        _containerView.backgroundColor = [UIColor clearColor];
+        _containerView.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    return _containerView;
+}
 
 @end

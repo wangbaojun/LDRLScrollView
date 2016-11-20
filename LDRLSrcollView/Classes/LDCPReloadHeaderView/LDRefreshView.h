@@ -7,19 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIPullToReloadAnimationDelegate.h"
 
 
 @interface LDRefreshView : UIView
 
-@property (nonatomic, strong) UIImageView  *catImgView;
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 
+@property (nonatomic, strong)  UILabel *statusLabel;
 
-- (void)startRollOverAnimation ;
-- (void)stopRollOverAnimation ;
-
-- (void)startLoadingAnimation ;
-- (void)stopLoadingAnimation ;
-
+@property (nonatomic, strong) UIView <UIPullToReloadAnimationDelegate> *animationView;
 
 @end
 

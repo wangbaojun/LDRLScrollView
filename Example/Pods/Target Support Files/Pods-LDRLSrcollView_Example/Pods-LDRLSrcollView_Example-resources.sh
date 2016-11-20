@@ -58,10 +58,10 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "../../LDRLSrcollView/Assets/LDCPPullToReload.xcassets"
+  install_resource "../../LDRLSrcollView/Assets/LDPullToReload.xcassets"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "../../LDRLSrcollView/Assets/LDCPPullToReload.xcassets"
+  install_resource "../../LDRLSrcollView/Assets/LDPullToReload.xcassets"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

@@ -20,5 +20,5 @@
   },
   "source_files": "LDRLSrcollView/Classes/**/*",
   "public_header_files": "Pod/Classes/**/*.h",
-  "resources": "LDRLSrcollView/Assets/LDCPPullToReload.xcassets"
+  "resources": "LDRLSrcollView/Assets/LDPullToReload.xcassets"
 }

@@ -10,9 +10,9 @@
 //下拉状态
 typedef NS_ENUM(NSInteger, LDRefreshStatus){
     LDRefreshNone = -1,
-    LDRefreshPullDowning = 0,//小圈逐渐变圆
-    LDRefreshRollOver	= 1,//小猫翻滚
-    LDRefreshLoading = 2 ,//小猫摇晃
+    LDRefreshReleaseToReload = 0,//松手刷新
+    LDRefreshPullDownToReload	= 1,//下拉刷新
+    LDRefreshLoading = 2 ,//好运加载中
     LDRefreshFinished = 3 //加载完毕
 } ;
 
@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, LDRefreshStatus){
 @property (nonatomic,assign) LDRefreshStatus refreshStatus;
 
 /**
+ *  @author ITxiansheng, 16-06-30 17:06:53
  *
  *  @brief 手动执行刷新的操作，可以指定在header下拉的过程中
       是否产生动画效果
@@ -30,6 +31,7 @@ typedef NS_ENUM(NSInteger, LDRefreshStatus){
 - (void) beginRefreshAnimated:(BOOL)animated;
 
 /**
+ *  @author ITxiansheng, 16-06-30 17:06:14
  *
  *  @brief 手动执行结束刷新,可以指定在header结束的时候是否产生动画
  *

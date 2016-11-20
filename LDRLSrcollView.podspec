@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'LDRLSrcollView'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'A short description of LDRLSrcollView.'
 
   s.description      = "ITxiansheng"
@@ -16,6 +16,6 @@ Pod::Spec.new do |s|
 
   s.public_header_files = 'Pod/Classes/**/*.h'
 
-  s.resources = 'LDRLSrcollView/Assets/LDCPPullToReload.xcassets'
+  s.resources = 'LDRLSrcollView/Assets/LDPullToReload.xcassets'
 
 end
