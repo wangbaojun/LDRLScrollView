@@ -20,10 +20,4 @@ it, simply add the following line to your Podfile:
 pod "LDRLSrcollView"
 ```
 
-## Author
-
-bjwangbaojun, bjwangbaojun@corp.netease.com
-
-## License
-
-LDRLSrcollView is available under the MIT license. See the LICENSE file for more info.
+LDRLScrollView is available under the MIT license. See the LICENSE file for more info.
